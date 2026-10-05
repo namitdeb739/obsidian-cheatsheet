@@ -1,0 +1,41 @@
+[project]
+name = "obsidian-cheatsheet"
+version = "0.1.0"
+description = "Obsidian notes in, one-page LaTeX cheat sheet out"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.12"
+authors = [{name = "Namit Deb", email = "namitdeb739@gmail.com"}]
+dependencies = []
+
+[project.urls]
+Repository = "https://github.com/namitdeb739/obsidian-cheatsheet"
+
+[project.scripts]
+md2tex = "obsidian_cheatsheet.md2tex:main"
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.5",
+]
+
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/obsidian_cheatsheet"]
+
+[tool.ruff]
+target-version = "py312"
+src = ["src"]
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "N", "UP", "B", "SIM", "TC", "RUF"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

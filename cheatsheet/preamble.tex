@@ -1,0 +1,88 @@
+% Layout: one A4 page, landscape, three columns, hairline margins.
+\usepackage[a4paper,landscape,margin=4mm,includefoot=false]{geometry}
+\usepackage{multicol}
+\usepackage{amsmath,amssymb,mathtools,physics,siunitx}
+% Required by the ported LaTeX Suite snippets: \coloneqq (mathtools),
+% \cancel/\cancelto, \ce/\pu, \AxiomC and friends.
+\usepackage{cancel}
+\usepackage[version=4]{mhchem}
+\usepackage{bussproofs}
+
+% Two snippets emit MathJax-only syntax that real LaTeX does not have:
+% mhchem's \pu exists only in the MathJax build, and MathJax's braket
+% extension takes \braket{a|b} where the physics package takes \braket{a}{b}.
+\providecommand{\pu}[1]{\ensuremath{\mathrm{#1}}}
+\renewcommand{\braket}[1]{\left\langle #1 \right\rangle}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{microtype}
+
+% The notes use real Unicode arrows in prose because Obsidian renders them.
+% Latin Modern has no glyph for these, and XeTeX drops them *silently* -- which
+% deletes the logical connective and inverts the meaning of a line. Map them.
+\usepackage{newunicodechar}
+\newunicodechar{⇒}{\ensuremath{\Rightarrow}}
+\newunicodechar{⟺}{\ensuremath{\Longleftrightarrow}}
+\newunicodechar{→}{\ensuremath{\rightarrow}}
+\newunicodechar{≠}{\ensuremath{\neq}}
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{≡}{\ensuremath{\equiv}}
+\newunicodechar{±}{\ensuremath{\pm}}
+\newunicodechar{×}{\ensuremath{\times}}
+\newunicodechar{≲}{\ensuremath{\lesssim}}
+\newunicodechar{≳}{\ensuremath{\gtrsim}}
+\newunicodechar{≪}{\ensuremath{\ll}}
+\newunicodechar{≫}{\ensuremath{\gg}}
+
+\input{macros}
+
+% --- Space reclamation -------------------------------------------------
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\setlength{\columnsep}{3mm}
+\setlength{\columnseprule}{0.4pt}
+\setlength{\abovedisplayskip}{2pt}
+\setlength{\belowdisplayskip}{2pt}
+\setlength{\abovedisplayshortskip}{0pt}
+\setlength{\belowdisplayshortskip}{0pt}
+\setlist[itemize]{leftmargin=*,nosep,topsep=0pt,label=\textbullet}
+\setlist[enumerate]{leftmargin=*,nosep,topsep=0pt}
+\pagestyle{empty}
+
+% --- Headings ----------------------------------------------------------
+% Purely typographic: centring, weight and size carry the hierarchy, so the
+% page stays legible in greyscale and on a photocopier. Three distinct
+% sizes, so a subsection never reads as a bold run of body text. One family
+% throughout — the body roman, headings the same face in bold.
+\renewcommand{\section}[1]{%
+  \par\vspace{3pt}%
+  {\centering\bfseries\Large #1\par}%
+  \vspace{1pt}}
+
+% Compact: these divide a chapter (Polarisation vs Diffraction), so they must
+% read as a level above the bold run-in labels without costing a \large line.
+% Centring is what outranks the left-aligned bold run-in labels, giving three
+% levels: centred \Large section, centred bold subsection, left bold label.
+% (No \scshape: Latin Modern has no bold small-caps shape and silently ignores
+% it.) The \nobreak stops a heading being orphaned at the foot of a column.
+\renewcommand{\subsection}[1]{%
+  \par\vspace{2pt}%
+  {\centering\bfseries #1\par}%
+  \nobreak\vspace{0.5pt}\nobreak}
+
+\renewcommand{\subsubsection}[1]{%
+  \par\vspace{2pt}\noindent
+  {\bfseries #1\par}}
+
+% --- Shorthands --------------------------------------------------------
+% Key result: centred on its own, no frame.
+\newenvironment{key}
+  {\par\vspace{2pt}\centering}
+  {\par\vspace{2pt}}
+\newcommand{\defn}[1]{\textbf{#1}}
+
+% Diagrams: centred, \tiny labels, and far less vertical padding than center.
+\newenvironment{fig}
+  {\par\vspace{1pt}\centering\tiny}
+  {\par\vspace{1pt}}

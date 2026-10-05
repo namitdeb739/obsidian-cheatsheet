@@ -1,0 +1,85 @@
+% macros.tex — the LaTeX Suite chords, as macros.
+%
+% Each one reproduces the exact output of the Obsidian snippet it is named
+% after, so what you draft in the vault and what you type here render the same.
+% Capitalised names throughout: the lowercase spellings belong to the physics
+% package, which is already loaded and whose \abs, \norm, \eval, \dv, \pdv and
+% \qty remain available unchanged.
+
+% --- Function application ----------------------------------------------
+% The suite's \!\left(...\right) idiom. These three cover ~60 chords: every
+% trig, log, and \operatorname chord differs only in the name it wraps.
+\newcommand{\ap}[2]{#1\!\left(#2\right)}            % \ap{\sin}{x}
+\newcommand{\apn}[3]{#1^{#2}\!\left(#3\right)}      % Sin2, SinN, LogN, ...
+\newcommand{\opn}[2]{\operatorname{#1}\!\left(#2\right)}  % rank, tr, span, ...
+
+% --- Big operators with limits -----------------------------------------
+\newcommand{\biglim}[4]{#1\limits_{#2}^{#3}\,#4}
+\newcommand{\Sum}[3]{\biglim{\sum}{#1}{#2}{#3}}
+\newcommand{\Prd}[3]{\biglim{\prod}{#1}{#2}{#3}}
+\newcommand{\BigU}[3]{\biglim{\bigcup}{#1}{#2}{#3}}
+\newcommand{\BigI}[3]{\biglim{\bigcap}{#1}{#2}{#3}}
+\newcommand{\BigW}[3]{\biglim{\bigwedge}{#1}{#2}{#3}}
+\newcommand{\BigV}[3]{\biglim{\bigvee}{#1}{#2}{#3}}
+
+% One limit below, nothing above.
+\newcommand{\underlim}[3]{#1\limits_{#2}\,#3}
+\newcommand{\Max}[2]{\underlim{\max}{#1}{#2}}
+\newcommand{\Min}[2]{\underlim{\min}{#1}{#2}}
+\newcommand{\Sup}[2]{\underlim{\sup}{#1}{#2}}
+\newcommand{\Inf}[2]{\underlim{\inf}{#1}{#2}}
+\newcommand{\Amax}[2]{\underlim{\operatorname*{argmax}}{#1}{#2}}
+\newcommand{\Amin}[2]{\underlim{\operatorname*{argmin}}{#1}{#2}}
+\newcommand{\Lim}[3]{\lim\limits_{#1 \to #2}\,#3}
+
+% --- Derivatives -------------------------------------------------------
+% Upright d, matching the suite; the physics package's \dv uses its own.
+\newcommand{\Der}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\DerN}[3]{\frac{\mathrm{d}^{#1}#2}{\mathrm{d}#3^{#1}}}
+\newcommand{\Dd}[2]{\frac{\mathrm{d}}{\mathrm{d}#1}\,#2}
+\newcommand{\DdN}[3]{\frac{\mathrm{d}^{#1}}{\mathrm{d}#2^{#1}}\,#3}
+\newcommand{\Pa}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\PaN}[3]{\frac{\partial^{#1}#2}{\partial #3^{#1}}}
+\newcommand{\Pam}[3]{\frac{\partial^2 #1}{\partial #2 \partial #3}}
+\newcommand{\Ppa}[2]{\frac{\partial}{\partial #1}\left(#2\right)}
+\newcommand{\PpaN}[3]{\frac{\partial^{#1}}{\partial #2^{#1}}\left(#3\right)}
+
+% --- Integrals ---------------------------------------------------------
+\newcommand{\Int}[2]{\int #1 \, \mathrm{d}#2}
+\newcommand{\DInt}[4]{\int_{#1}^{#2} #3 \, \mathrm{d}#4}
+\newcommand{\OInt}[3]{\oint_{#1} #2 \, \mathrm{d}#3}
+\newcommand{\IInt}[3]{\iint #1 \, \mathrm{d}#2\,\mathrm{d}#3}
+\newcommand{\TInt}[4]{\iiint #1 \, \mathrm{d}#2\,\mathrm{d}#3\,\mathrm{d}#4}
+\newcommand{\OInf}[2]{\DInt{0}{\infty}{#1}{#2}}
+\newcommand{\Infi}[2]{\DInt{-\infty}{\infty}{#1}{#2}}
+\newcommand{\Evb}[3]{\left[ #1 \right]_{#2}^{#3}}
+
+% --- Delimiters --------------------------------------------------------
+\newcommand{\Lr}[1]{\left( #1 \right)}
+\newcommand{\Avg}[1]{\left\langle #1 \right\rangle}
+\newcommand{\Abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\Norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\Snorm}[1]{\left\lVert #1 \right\rVert_{2}}
+\newcommand{\Fnorm}[1]{\left\lVert #1 \right\rVert_{F}}
+\newcommand{\Ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\Floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\Set}[1]{\left\{ #1 \right\}}
+\newcommand{\Sbd}[2]{\left\{ #1 \mid #2 \right\}}
+\newcommand{\Dprd}[2]{\left\langle #1, #2 \right\rangle}
+\newcommand{\Lb}[2]{\left[ #1, #2 \right]}
+\newcommand{\Sk}[1]{\left[ #1 \right]_{\times}}
+
+% --- Sequences ---------------------------------------------------------
+\newcommand{\Sset}[2]{\left\{ #1_1, #1_2, \ldots, #1_{#2} \right\}}
+\newcommand{\Sarr}[2]{\left( #1_1, #1_2, \ldots, #1_{#2} \right)}
+\newcommand{\Csset}[2]{\left\{ #1_1, \ldots, #1_{#2} \right\}}
+\newcommand{\Csarr}[2]{\left( #1_1, \ldots, #1_{#2} \right)}
+\newcommand{\Iset}[3]{\left\{ #1_{#2} \right\}_{#2=1}^{#3}}
+
+% --- Physics and quantum mechanics -------------------------------------
+\newcommand{\kbt}{k_{B}T}
+\newcommand{\msun}{M_{\odot}}
+\newcommand{\Iso}[3]{{}^{#1}_{#2}\mathrm{#3}}
+\newcommand{\Outer}[1]{\ket{#1}\bra{#1}}
+\newcommand{\Brk}[2]{\braket{#1 | #2}}
+\newcommand{\Cis}[1]{\cos\!\left(#1\right) + \mathrm{i}\sin\!\left(#1\right)}
